@@ -9,7 +9,7 @@ import React from "react";
 /* -------------------------------------------------------------------------- */
 
 /*
-    Table for holding employee values
+    Table for holding employee values that is rendered as a prop to the coluumn component on the directory page.
 */
 
 function EmployeeTable () {
