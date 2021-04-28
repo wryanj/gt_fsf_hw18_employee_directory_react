@@ -56,7 +56,7 @@
                     <Row>
                         <Col>
                             <EmployeeTable
-                               results = {this.state.results}
+                               results = {this.state.result} // Passes results of the api call to my employee table component
                             />
                         </Col>
                     </Row>

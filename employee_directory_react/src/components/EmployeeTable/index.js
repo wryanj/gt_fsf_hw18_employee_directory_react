@@ -2,146 +2,162 @@
 /*                             Import Dependencies                            */
 /* -------------------------------------------------------------------------- */
 
-import { useTable } from "react-table"
-import React from "react";
+  import { useTable } from "react-table"
+  import React from "react";
 
 /* -------------------------------------------------------------------------- */
-/*                              Define Component                              */
+/*                              Define Components                            */
 /* -------------------------------------------------------------------------- */
 
-function Table({columns,data}) {
-  // Use the state and functions returned from useTable to build your UI
-  const { getTableProps, headerGroups, rows, prepareRow } = useTable({
-    columns,
-    data,
-  })
+  /* -------------------------- Defining Table and UI ------------------------- */
 
-  // Render the UI for the table, using bootstrap classes
-  return (
-    // apply the table props
-    <table {...getTableProps()} className="table table-dark">
-      <thead>
-        {// Loop over the header rows
-        headerGroups.map(headerGroup => (
-          // Apply the header row props
-          <tr {...headerGroup.getHeaderGroupProps()}>
-            {// Loop over the headers in each row
-            headerGroup.headers.map(column => (
-              // Apply the header cell props
-              <th {...column.getHeaderProps()}>
-                {// Render the header
-                column.render('Header')}
-              </th>
-            ))}
-          </tr>
-        ))}
-      </thead>
-      <tbody>
-        {rows.map((row, i) => {
-          // Prepare the row for display
-          prepareRow(row)
-          return (
-            // Apply the row props
-            <tr {...row.getRowProps()}>
-              {// Loop over the rows cells
-              row.cells.map(cell => {
-                // Apply the cell props
-                return (
-                  <td {...cell.getCellProps()}>
-                    {// Render the cell contents
-                    cell.render('Cell')}
-                  </td>
-                )
-              })}
-            </tr>
-          )
-        })}
-      </tbody>
-    </table>
-    )
+  function Table({columns,data}) {
+    // Use the state and functions returned from useTable to build your UI
+    const { getTableProps, headerGroups, rows, prepareRow } = useTable({
+      columns,
+      data,
+    })
 
-
-}
-
-function EmployeeTable() {
-
-  /* ------------------------ React Column Definitions ------------------------ */
-
-  const columns = React.useMemo(
-    () => [
-      {
-        Header: 'Image',
-        accessor: 'image', // accessor is the "key" in the data
-      },
-      {
-        Header: 'Name',
-        accessor: 'name',
-      },
-      {
-        Header: 'Phone Number',
-        accessor: 'phone',
-      },
-      {
-        Header: 'Email',
-        accessor: 'email',
-      },
-      {
-        Header: 'DOB',
-        accessor: 'dob',
-      },
-    ],
-    []
-  )
-
-  /* ---------------------------- React Table Data ---------------------------- */
-
-  const data = React.useMemo(
-    () => [
-        {
-            image: 'image',
-            name:'name',
-            phone:'phonenumber',
-            email: 'email',
-            dob: 'DOB'
-        },
-        {
-          image: 'image',
-          name:'name',
-          phone:'phonenumber',
-          email: 'email',
-          dob: 'DOB'
-        },
-        {
-          image: 'image',
-          name:'name',
-          phone:'phonenumber',
-          email: 'email',
-          dob: 'DOB'
-        }
-    ]
-)
-
-  /* ------------------------- Return Table With Data ------------------------- */
+    // Render the UI for the table, using bootstrap classes
     return (
-      <div>
-        <Table columns={columns} data={data} />
-      </div>
+      // apply the table props
+      <table {...getTableProps()} className="table table-dark">
+        <thead>
+          {// Loop over the header rows
+          headerGroups.map(headerGroup => (
+            // Apply the header row props
+            <tr {...headerGroup.getHeaderGroupProps()}>
+              {// Loop over the headers in each row
+              headerGroup.headers.map(column => (
+                // Apply the header cell props
+                <th {...column.getHeaderProps()}>
+                  {// Render the header
+                  column.render('Header')}
+                </th>
+              ))}
+            </tr>
+          ))}
+        </thead>
+        <tbody>
+          {rows.map((row, i) => {
+            // Prepare the row for display
+            prepareRow(row)
+            return (
+              // Apply the row props
+              <tr {...row.getRowProps()}>
+                {// Loop over the rows cells
+                row.cells.map(cell => {
+                  // Apply the cell props
+                  return (
+                    <td {...cell.getCellProps()}>
+                      {// Render the cell contents
+                      cell.render('Cell')}
+                    </td>
+                  )
+                })}
+              </tr>
+            )
+          })}
+        </tbody>
+      </table>
+      )
+  }
+
+
+/* --------------------- Define Employee Table Component -------------------- */
+  /*
+    I pass this props from Directory.js I think, 
+    so somewhere in here I need to hand off that data to populate the table
+  */
+
+  function EmployeeTable(props) {
+
+    // Check props
+    console.log('props in Employee Table function are', props.results);
+
+    // Define a new array of user objects to pass to my table
+    let users = props.results.map (user => 
+      (
+        {
+          image: 'image',
+          name: user.name.first,
+          phone: user.phone,
+          email: user.email,
+          dob: user.dob.date
+        }
+      )
+    );
+
+      console.log('my new array', users);
+    
+
+    // Define columns for table
+    const columns = React.useMemo(
+      () => [
+        {
+          Header: 'Image',
+          accessor: 'image', // accessor is the "key" in the data
+        },
+        {
+          Header: 'Name',
+          accessor: 'name',
+        },
+        {
+          Header: 'Phone Number',
+          accessor: 'phone',
+        },
+        {
+          Header: 'Email',
+          accessor: 'email',
+        },
+        {
+          Header: 'DOB',
+          accessor: 'dob',
+        },
+      ],
+      []
     )
 
+    // Define data for table
+      //eslint-disable-next-line
+      const data = React.useMemo(() => users, [])
+   
+    /*
+          If I was seeding this table to see how it worked, I did it as seen below:
+          
+      //   const data = React.useMemo(
+      //     () => [
+      //         {
+      //             image: 'image',
+      //             name:'name',
+      //             phone:'phonenumber',
+      //             email: 'email',
+      //             dob: 'DOB'
+      //         },
+      //         {
+      //           image: 'image',
+      //           name:'name',
+      //           phone:'phonenumber',
+      //           email: 'email',
+      //           dob: 'DOB'
+      //         },
+      //         {
+      //           image: 'image',
+      //           name:'name',
+      //           phone:'phonenumber',
+      //           email: 'email',
+      //           dob: 'DOB'
+      //         }
+      //     ]
+      // )
+  */
 
-  /* ---------------- Create table instance using useTableHook ---------------- */
-
-  // const tableInstance = useTable({ columns, data })
-
-  // const {
-  //   getTableProps,
-  //   getTableBodyProps,
-  //   headerGroups,
-  //   rows,
-  //   prepareRow,
-  // } = tableInstance
-
-  
+    // Return the Table With Data For Rendering
+      return (
+        <div>
+          <Table columns={columns} data={data} />
+        </div>
+      )
 
   }
 
