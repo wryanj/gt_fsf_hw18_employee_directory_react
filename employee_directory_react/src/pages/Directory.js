@@ -29,9 +29,7 @@
         componentDidMount() {
             API.getUsers()
                 //.then(res=> console.log(res.data.results))
-                .then(res => {
-                    console.log(res.data.results);
-                    this.setState({result: res.data.results})}) // why does this not set state? Doesnt work with basic string either
+                .then(res => this.setState({result: res.data.results})) 
                 .catch(err => console.log(err));
         };
 
