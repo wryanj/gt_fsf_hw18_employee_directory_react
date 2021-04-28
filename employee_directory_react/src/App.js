@@ -4,7 +4,7 @@
 
   import React from "react";
   import { BrowserRouter as Router, Route } from "react-router-dom";
-  //import Navbar from "./components/Navbar";
+  import Navbar from "./components/Navbar";
   import Wrapper from "./components/Wrapper";
   import Directory from "./pages/Directory";
 
@@ -32,6 +32,7 @@
     return (
       <Router>
         <div data-component="DivInRouter">
+          <Navbar data-component="Navbar"/>
           <Wrapper data-component="Wrapper">
             <Route path="/" component={Directory} />
           </Wrapper>

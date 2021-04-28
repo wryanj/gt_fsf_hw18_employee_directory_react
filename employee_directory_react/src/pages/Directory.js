@@ -7,7 +7,8 @@
     import Row from "../components/Row";
     import Col from "../components/Column";
     import EmployeeTable from "../components/EmployeeTable";
-    //import API from "../utils/API";
+    import API from "../utils/API";
+   
 
 /* -------------------------------------------------------------------------- */
 /*                            Define Page Component                           */
@@ -17,35 +18,46 @@
 
     class Directory extends Component {
         state = {
-            result: {},
-            search: ""
+            result:[], 
+            testMessage:"a state property"
         };
 
-    /* ----------------------------- Handle API Call ---------------------------- */
+        /* ----------------------------- Handle API Call ---------------------------- */
 
-        // searchPeople = query => {
-        //     API.search(query)
-        //     .then(res => this.setState({ result: res.data }))
-        //     .catch(err => console.log(err));
-        // };
+  
+        // When this component mounts, call the api for random users
+        componentDidMount() {
+            API.getUsers()
+                //.then(res=> console.log(res.data.results))
+                .then(res => {
+                    console.log(res.data.results);
+                    this.setState({result: res.data.results})}) // why does this not set state? Doesnt work with basic string either
+                .catch(err => console.log(err));
+        };
 
-    /* -------------- Render Components For Container, Row, Column -------------- */
-        /*
-            This component is rendered by app.js within the wrapper component. It returns
-            The container component, the row sub component and the column subcomponent. 
-        */
 
-        render() {
-            return (
-            <Container>
-                <Row>
-                    <Col>
-                        <EmployeeTable/>
-                    </Col>
-                </Row>
-            </Container>
-            );
-        }
+        /* -------------- Render Components For Container, Row, Column -------------- */
+            /*
+                This component is rendered by app.js within the wrapper component. It returns
+                The container component, the row sub component and the column subcomponent. 
+
+                I am passing the result of my api call as a prop to my employee table component
+            */
+
+            render() {
+                console.log("state in the render", this.state);
+                return (
+                <Container>
+                    <Row>
+                        <Col>
+                            <EmployeeTable
+                               results = {this.state.results}
+                            />
+                        </Col>
+                    </Row>
+                </Container>
+                );
+            }
     }
 
 /* -------------------------------------------------------------------------- */

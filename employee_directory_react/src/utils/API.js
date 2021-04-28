@@ -8,16 +8,23 @@
 /*                              Define Constants                              */
 /* -------------------------------------------------------------------------- */
 
-    const queryURL = "https://randomuser.me/api/?key=9CVX-4ZFR-VBQ9-RGS6&ref=vt8vih7j&results=50";
-    // APIKEY = "9CVX-4ZFR-VBQ9-RGS6"; 
+    /*
+        Key & number of users set directly to axios URL below
+
+        API Key = 9CVX-4ZFR-VBQ9-RGS6
+        Hardcoding to return 20 users
+    */
 
 /* -------------------------------------------------------------------------- */
 /*                       Export API Call For Use As Prop                      */
 /* -------------------------------------------------------------------------- */
 
-    // Export an object with a "search" method that searches the Giphy API for the passed query
+    // Export an object with a "getUsers method" to call in directory component
+    // eslint-disable-next-line
     export default {
-        search: function() {
-            return axios.get(queryURL);
+        getUsers: function() {
+            return axios.get(
+                "https://randomuser.me/api/?key=9CVX-4ZFR-VBQ9-RGS6&ref=vt8vih7j&results=20"
+            );
         }
     };

@@ -3,7 +3,7 @@
 /* -------------------------------------------------------------------------- */
 
     import React from "react";
-    import { Link } from "react-router-dom";
+    // import { Link } from "react-router-dom";
 
 /* -------------------------------------------------------------------------- */
 /*                              Define Component                              */
@@ -17,30 +17,30 @@
         why I have it imported above and not self-defined as a component. 
 
         This nabvar is always present for any page, and it is passed NO props. 
+
+        Note- removed this from within the li elemenet for testing
+                        <Link
+                        to="/"
+                        className={
+                            window.location.pathname === "/" || window.location.pathname === "/directory"
+                            ? "nav-link active"
+                            : "nav-link"
+                        }
+                        >
+                        Directory
+                        </Link>
     */
 
     function Navbar() {
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <Link className="navbar-brand" to="/">
-            EmDirector
-        </Link>
-        <div>
-            <ul className="navbar-nav">
-            <li className="nav-item">
-                <Link
-                to="/"
-                className={
-                    window.location.pathname === "/" || window.location.pathname === "/directory"
-                    ? "nav-link active"
-                    : "nav-link"
-                }
-                >
-                Directory
-                </Link>
-            </li>
-            </ul>
-        </div>
+        <nav className="navbar navbar-expand-lg navbar-light bg-light mb-2">
+            <div className="container">
+                <ul className="navbar-nav">
+                    <li className="nav-item my-3">
+                     Employee Directory
+                    </li>
+                </ul>
+            </div>
         </nav>
     );
     }
