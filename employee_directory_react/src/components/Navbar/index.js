@@ -33,7 +33,7 @@
 
     function Navbar() {
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light mb-2">
+        <nav className="navbar navbar-expand-lg navbar-light mb-2 text-light bg-dark font-weight-bold">
             <div className="container">
                 <ul className="navbar-nav">
                     <li className="nav-item my-3">

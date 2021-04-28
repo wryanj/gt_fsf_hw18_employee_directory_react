@@ -2,7 +2,7 @@
 /*                             Import Dependencies                            */
 /* -------------------------------------------------------------------------- */
 
-  import { useTable, userSortBy, useSortBy } from "react-table"
+  import { useTable, useSortBy } from "react-table"
   import React from "react";
 
 /* -------------------------------------------------------------------------- */
@@ -89,8 +89,8 @@
     let users = props.results.map (user => 
       (
         {
-          image: "figure img out",
-          name: user.name.first,
+          image:<img src={user.picture.thumbnail} alt="employee profile"/>, 
+          name: `${user.name.first} ${user.name.last}`,
           phone: user.phone,
           email: user.email,
           dob: user.dob.date
@@ -98,8 +98,7 @@
       )
     );
 
-      console.log('my new array', users);
-    
+    console.log('my new array', users); // checking my object array in the console for testing
 
     // Define columns for table
     const columns = React.useMemo(
