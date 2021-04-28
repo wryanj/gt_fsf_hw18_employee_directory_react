@@ -2,7 +2,7 @@
 /*                             Import Dependencies                            */
 /* -------------------------------------------------------------------------- */
 
-  import { useTable } from "react-table"
+  import { useTable, userSortBy, useSortBy } from "react-table"
   import React from "react";
 
 /* -------------------------------------------------------------------------- */
@@ -13,10 +13,13 @@
 
   function Table({columns,data}) {
     // Use the state and functions returned from useTable to build your UI
-    const { getTableProps, headerGroups, rows, prepareRow } = useTable({
+    const { getTableProps, headerGroups, rows, prepareRow } = useTable(
+      {
       columns,
       data,
-    })
+      },
+      useSortBy
+    )
 
     // Render the UI for the table, using bootstrap classes
     return (
@@ -29,10 +32,17 @@
             <tr {...headerGroup.getHeaderGroupProps()}>
               {// Loop over the headers in each row
               headerGroup.headers.map(column => (
-                // Apply the header cell props
-                <th {...column.getHeaderProps()}>
-                  {// Render the header
+                // Apply the header cell props and ad in props to control sorting
+                <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+                  {// Render the header and add sort direction indicator
                   column.render('Header')}
+                  <span>
+                    {column.isSorted
+                        ? column.isSortedDesc
+                          ? ' 🔽'
+                          : ' 🔼'
+                        : ''}
+                  </span>
                 </th>
               ))}
             </tr>
@@ -79,7 +89,7 @@
     let users = props.results.map (user => 
       (
         {
-          image: 'image',
+          image: "figure img out",
           name: user.name.first,
           phone: user.phone,
           email: user.email,
@@ -124,7 +134,7 @@
    
     /*
           If I was seeding this table to see how it worked, I did it as seen below:
-          
+
       //   const data = React.useMemo(
       //     () => [
       //         {
