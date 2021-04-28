@@ -24,11 +24,15 @@
 
         /* ----------------------------- Handle API Call ---------------------------- */
 
+        /*
+            Note the way I call the api directly in componentDidMount
+            Means the render method runs twice. Not a bad thing for this, 
+            but look into why in future
+        */
   
         // When this component mounts, call the api for random users
         componentDidMount() {
             API.getUsers()
-                //.then(res=> console.log(res.data.results))
                 .then(res => this.setState({result: res.data.results})) 
                 .catch(err => console.log(err));
         };
@@ -43,7 +47,10 @@
             */
 
             render() {
+                // Checking my state reults with the top console log
                 console.log("state in the render", this.state);
+
+                // Rendering components down to the table, and passing table this.state.results as props
                 return (
                 <Container>
                     <Row>
