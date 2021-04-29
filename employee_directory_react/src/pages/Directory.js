@@ -19,23 +19,23 @@
     class Directory extends Component {
         state = {
             result:[], 
-            testMessage:"a state property"
+            isFetching: false,
+            stateTesting:"a state property"
         };
 
         /* ----------------------------- Handle API Call ---------------------------- */
-
-        /*
-            Note the way I call the api directly in componentDidMount
-            Means the render method runs twice. Not a bad thing for this, 
-            but look into why in future
-        */
   
-        // When this component mounts, call the api for random users
+        // When this component mounts, run the method to get the users via api
         componentDidMount() {
-            API.getUsers()
-                .then(res => this.setState({result: res.data.results})) 
-                .catch(err => console.log(err));
+            this.getUserApi();
         };
+
+        // Get the users via random user API
+        getUserApi () {
+            API.getUsers()
+            .then(res => this.setState({result: res.data.results, isFetching: true}))
+            .catch(err => console.log(err));
+        }
 
 
         /* -------------- Render Components For Container, Row, Column -------------- */
@@ -52,15 +52,15 @@
 
                 // Rendering components down to the table, and passing table this.state.results as props
                 return (
-                <Container>
-                    <Row>
-                        <Col>
-                            <EmployeeTable
-                               results = {this.state.result} // Passes results of the api call to my employee table component
-                            />
-                        </Col>
-                    </Row>
-                </Container>
+                    <Container>
+                        <Row>
+                            <Col>
+                                <EmployeeTable
+                                results = {this.state.result} // Passes results of the api call to my employee table component
+                                />
+                            </Col>
+                        </Row>
+                    </Container>
                 );
             }
     }

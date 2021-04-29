@@ -31,7 +31,7 @@
   function App() {
     return (
       <Router>
-        <div data-component="DivInRouter">
+        <div data-component="DivInRouter" className="bg-dark">
           <Navbar data-component="Navbar"/>
           <Wrapper data-component="Wrapper">
             <Route path="/" component={Directory} />

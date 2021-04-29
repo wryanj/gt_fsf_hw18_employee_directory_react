@@ -33,11 +33,11 @@
 
     function Navbar() {
     return (
-        <nav className="navbar navbar-expand-lg navbar-light mb-2 text-light bg-dark font-weight-bold">
-            <div className="container">
+        <nav className="navbar navbar-expand-lg navbar-light mb-2 text-light bg-dark font-weight-bold justify-content-center">
+            <div className="container text-center">
                 <ul className="navbar-nav">
                     <li className="nav-item my-3">
-                     Employee Directory
+                     Employee Directory 
                     </li>
                 </ul>
             </div>

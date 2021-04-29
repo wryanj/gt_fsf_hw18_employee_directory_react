@@ -2,23 +2,39 @@
 /*                             Import Dependencies                            */
 /* -------------------------------------------------------------------------- */
 
-  import { useTable, useSortBy } from "react-table"
+  import { useTable, useSortBy} from "react-table"
   import React from "react";
+
+  
 
 /* -------------------------------------------------------------------------- */
 /*                              Define Components                            */
 /* -------------------------------------------------------------------------- */
 
-  /* -------------------------- Defining Table and UI ------------------------- */
+  /* -------------------------- Defining filtering UI ------------------------- */
+
+    /*
+      Icebox
+    */
+
+
+/* ---------------------------- Defining Table UI --------------------------- */
 
   function Table({columns,data}) {
     // Use the state and functions returned from useTable to build your UI
-    const { getTableProps, headerGroups, rows, prepareRow } = useTable(
+    const { 
+      getTableProps, 
+      headerGroups, 
+      rows, 
+      prepareRow, 
+      
+     } = useTable(
       {
       columns,
       data,
       },
-      useSortBy
+      useSortBy,
+     
     )
 
     // Render the UI for the table, using bootstrap classes
@@ -83,7 +99,7 @@
   function EmployeeTable(props) {
 
     // Check props
-    console.log('props in Employee Table function are', props.results);
+    console.log('props received from directory.js within EmployeeTable', props.results);
 
     // Define a new array of user objects to pass to my table
     let users = props.results.map (user => 
@@ -98,7 +114,7 @@
       )
     );
 
-    console.log('my new array', users); // checking my object array in the console for testing
+    console.log('Updated array I create to populate my table', users); // checking my object array in the console for testing
 
     // Define columns for table
     const columns = React.useMemo(
@@ -129,7 +145,7 @@
 
     // Define data for table
       //eslint-disable-next-line
-      const data = React.useMemo(() => users, [])
+      const data = React.useMemo(() => users)
    
     /*
           If I was seeding this table to see how it worked, I did it as seen below:
