@@ -12,7 +12,7 @@ import React from "react";
 function Instruction() {
     return (
         <div className="alert alert-primary text-center mb-4 mx-4">
-            Welcome to the Directory! Click on a header to sort any column. 
+            Welcome to the Directory! Start typing to search, or click a column header to sort. 
         </div>
     );
 }

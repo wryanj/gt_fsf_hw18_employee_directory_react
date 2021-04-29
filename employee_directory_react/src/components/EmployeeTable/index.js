@@ -24,8 +24,8 @@ function GlobalFilter({
 
     // This is the UI Component to Return for the search
     return (
-      <form className="align-items-center">
-        <div className="col-3 mx-auto">
+      <form>
+        <div className="col-3 mx-auto mt-2 mb-1">
             <label className="visually-hidden" for="autoSizingInputGroup">Search</label>
             <div className="input-group">
                 <span className="text-white me-3 align-middle d-flex align-items-center"> 
