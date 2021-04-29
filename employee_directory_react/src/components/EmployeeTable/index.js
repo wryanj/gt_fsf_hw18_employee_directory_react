@@ -110,7 +110,7 @@ function Table({columns,data}) {
         />
     </div>
     <br/>
-    <table {...getTableProps()} className="table table-dark">
+    <table {...getTableProps()} className="table table-dark align-middle">
       <thead>
         {// Loop over the header rows
         headerGroups.map(headerGroup => (
