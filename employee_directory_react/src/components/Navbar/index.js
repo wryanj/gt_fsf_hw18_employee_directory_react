@@ -33,13 +33,9 @@
 
     function Navbar() {
     return (
-        <nav className="navbar navbar-expand-lg navbar-light mb-2 text-light bg-dark font-weight-bold justify-content-center">
-            <div className="container text-center">
-                <ul className="navbar-nav">
-                    <li className="nav-item my-3">
-                     Employee Directory 
-                    </li>
-                </ul>
+        <nav className="navbar navbar-dark bg-dark my-3">
+            <div className="container-fluid">
+                <h1 className="navbar-brand mb-0 fs-1 mx-auto">Employee Directory</h1>
             </div>
         </nav>
     );

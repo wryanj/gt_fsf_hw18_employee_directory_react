@@ -4,6 +4,7 @@
 
   import React from "react";
   import { BrowserRouter as Router, Route } from "react-router-dom";
+  import Instruction from "./components/Instruction";
   import Navbar from "./components/Navbar";
   import Wrapper from "./components/Wrapper";
   import Directory from "./pages/Directory";
@@ -33,6 +34,7 @@
       <Router>
         <div data-component="DivInRouter" className="bg-dark">
           <Navbar data-component="Navbar"/>
+          <Instruction/>
           <Wrapper data-component="Wrapper">
             <Route path="/" component={Directory} />
           </Wrapper>
