@@ -6,12 +6,11 @@ import { useTable, useSortBy, useFilters, useGlobalFilter, useAsyncDebounce } fr
 import React from "react";
 
 
-
 /* -------------------------------------------------------------------------- */
-/*                              Define Components                            */
+/*                     Define Employee Table SubComponents                    */
 /* -------------------------------------------------------------------------- */
 
-/* -------------------------- Search Filter Component ------------------------- */
+/* ------------------- Global Filter (Search) Subcomponent ------------------ */
 
 // Define a default UI for filtering
 function GlobalFilter({
@@ -23,25 +22,34 @@ function GlobalFilter({
       setGlobalFilter(value || undefined)
     }, 200)
 
-    // This is the UI Component to Return
+    // This is the UI Component to Return for the search
     return (
-      <span>
-        Search:{' '}
-        <input
-          value={value || ""}
-          onChange={e => {
-            setValue(e.target.value);
-            onChange(e.target.value);
-          }}
-          placeholder={`Search`}
-        />
-      </span>
+      <form className="align-items-center">
+        <div className="col-3 mx-auto">
+            <label className="visually-hidden" for="autoSizingInputGroup">Search</label>
+            <div className="input-group">
+                <span className="text-white me-3 align-middle d-flex align-items-center"> 
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-eye" viewBox="0 0 16 16">
+                        <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+                        <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+                    </svg>
+                </span>
+                <input
+                    className="form-control"
+                    value={value || ""}
+                    onChange={e => {
+                        setValue(e.target.value);
+                        onChange(e.target.value);
+                    }}
+                    placeholder={`Search`}
+                />
+            </div>
+        </div>
+      </form>
     )
   }
 
-
-
-/* ---------------------------- Table Component --------------------------- */
+/* --------------------------- Table Subcomponent --------------------------- */
 
 function Table({columns,data}) {
 
@@ -62,10 +70,9 @@ function Table({columns,data}) {
         []
     )
 
-  // Setup DefaultColumn
+  // Setup Default Column (Default Filter UI)
   const defaultColumn = React.useMemo(
     () => ({
-      // Let's set up our default Filter UI
       Filter: GlobalFilter,
     }),
     []
@@ -74,7 +81,6 @@ function Table({columns,data}) {
   // Use the state and functions returned from useTable to build your UI
   const {
     getTableProps,
-    getTableBodyProps,
     headerGroups,
     rows,
     prepareRow,
@@ -155,7 +161,10 @@ function Table({columns,data}) {
 }
 
 
-/* --------------------- Define Employee Table Component -------------------- */
+/* -------------------------------------------------------------------------- */
+/*                 Define Main Component For Exporting Default                */
+/* -------------------------------------------------------------------------- */
+
 /*
   I pass this props from Directory.js I think, 
   so somewhere in here I need to hand off that data to populate the table
@@ -212,22 +221,22 @@ function EmployeeTable(props) {
     //eslint-disable-next-line
     const data = React.useMemo(() => users)
  
-  /*
-        If I was seeding this table to see how it worked, I did it as seen below:
+        /*
+                NOTE: If I was seeding this table to see how it worked, I did it as seen below:
 
-    //   const data = React.useMemo(
-    //     () => [
-    //         {
-    //             image: 'image',
-    //             name:'name',
-    //             phone:'phonenumber',
-    //             email: 'email',
-    //             dob: 'DOB'
-    //         }
-    //  
-    //     ]
-    // )
-*/
+            const data = React.useMemo(
+                () => [
+                    {
+                        image: 'image',
+                        name:'name',
+                        phone:'phonenumber',
+                        email: 'email',
+                        dob: 'DOB'
+                    }
+            
+                ]
+            )
+        */
 
   // Return the Table With Data For Rendering and the Search Filter
     return (
@@ -242,4 +251,4 @@ function EmployeeTable(props) {
 /*                              Export Component                              */
 /* -------------------------------------------------------------------------- */
 
-export default EmployeeTable;
+    export default EmployeeTable;
