@@ -8,6 +8,7 @@
     import Col from "../components/Column";
     import EmployeeTable from "../components/EmployeeTable";
     import API from "../utils/API";
+    import Instruction from "../components/Instruction";
    
 
 /* -------------------------------------------------------------------------- */
@@ -53,6 +54,11 @@
                 // Rendering components down to the table, and passing table this.state.results as props
                 return (
                     <Container>
+                         <Row>
+                            <Col>
+                                <Instruction/>
+                            </Col>
+                        </Row>
                         <Row>
                             <Col>
                                 <EmployeeTable

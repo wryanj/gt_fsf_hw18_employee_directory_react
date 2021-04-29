@@ -11,7 +11,7 @@ import React from "react";
 
 function Instruction() {
     return (
-        <div class="alert alert-primary text-center">
+        <div className="alert alert-primary text-center mb-4 mx-4">
             Welcome to the Directory! Click on a header to sort any column. 
         </div>
     );
