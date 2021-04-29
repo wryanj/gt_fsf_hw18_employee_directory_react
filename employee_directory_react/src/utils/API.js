@@ -24,7 +24,7 @@
     export default {
         getUsers: function() {
             return axios.get(
-                "https://randomuser.me/api/?key=9CVX-4ZFR-VBQ9-RGS6&ref=vt8vih7j&results=100"
+                "https://randomuser.me/api/?key=9CVX-4ZFR-VBQ9-RGS6&ref=vt8vih7j&nat=us&results=100"
             );
         }
     };

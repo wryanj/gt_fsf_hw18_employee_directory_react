@@ -175,6 +175,7 @@ function EmployeeTable(props) {
   // Check props
   console.log('props received from directory.js within EmployeeTable', props.results);
 
+
   // Define a new array of user objects to pass to my table
   let users = props.results.map (user => 
     (
