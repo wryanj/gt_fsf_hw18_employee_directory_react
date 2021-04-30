@@ -26,7 +26,7 @@ function GlobalFilter({
     return (
       <form>
         <div className="col-3 mx-auto mt-2 mb-1">
-            <label className="visually-hidden" for="autoSizingInputGroup">Search</label>
+            <label className="visually-hidden" >Search</label>
             <div className="input-group">
                 <span className="text-white me-3 align-middle d-flex align-items-center"> 
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-eye" viewBox="0 0 16 16">
@@ -102,72 +102,70 @@ function Table({columns,data}) {
   // Render the UI for the table, using bootstrap classes
   return (
     <>
-    <div>
-        <GlobalFilter
-            preGlobalFilteredRows={preGlobalFilteredRows}
-            globalFilter={state.globalFilter}
-            setGlobalFilter={setGlobalFilter}
-        />
-    </div>
-    <br/>
-    <table {...getTableProps()} className="table table-dark align-middle">
-      <thead>
-        {// Loop over the header rows
-        headerGroups.map(headerGroup => (
-          // Apply the header row props
-          <tr {...headerGroup.getHeaderGroupProps()}>
-            {// Loop over the headers in each row
-            headerGroup.headers.map(column => (
-              // Apply the header cell props and ad in props to control sorting
-              <th {...column.getHeaderProps(column.getSortByToggleProps())}>
-                {// Render the header and add sort direction indicator
-                column.render('Header')}
-                <span>
-                  {column.isSorted
-                      ? column.isSortedDesc
-                        ? ' 🔽'
-                        : ' 🔼'
-                      : ''}
-                </span>
-              </th>
-            ))}
-          </tr>
-        ))}
-      </thead>
-      <tbody>
-        {rows.map((row, i) => {
-          // Prepare the row for display
-          prepareRow(row)
-          return (
-            // Apply the row props
-            <tr {...row.getRowProps()}>
-              {// Loop over the rows cells
-              row.cells.map(cell => {
-                // Apply the cell props
-                return (
-                  <td {...cell.getCellProps()}>
-                    {// Render the cell contents
-                    cell.render('Cell')}
-                  </td>
-                )
-              })}
+      <div>
+          <GlobalFilter
+              preGlobalFilteredRows={preGlobalFilteredRows}
+              globalFilter={state.globalFilter}
+              setGlobalFilter={setGlobalFilter}
+          />
+      </div>
+      <br/>
+      <table {...getTableProps()} className="table table-dark align-middle">
+        <thead>
+          {// Loop over the header rows
+          headerGroups.map(headerGroup => (
+            // Apply the header row props
+            <tr {...headerGroup.getHeaderGroupProps()}>
+              {// Loop over the headers in each row
+              headerGroup.headers.map(column => (
+                // Apply the header cell props and ad in props to control sorting
+                <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+                  {// Render the header and add sort direction indicator
+                  column.render('Header')}
+                  <span>
+                    {column.isSorted
+                        ? column.isSortedDesc
+                          ? ' 🔽'
+                          : ' 🔼'
+                        : ''}
+                  </span>
+                </th>
+              ))}
             </tr>
-          )
-        })}
-      </tbody>
-    </table>
+          ))}
+        </thead>
+        <tbody>
+          {rows.map((row, i) => {
+            // Prepare the row for display
+            prepareRow(row)
+            return (
+              // Apply the row props
+              <tr {...row.getRowProps()}>
+                {// Loop over the rows cells
+                row.cells.map(cell => {
+                  // Apply the cell props
+                  return (
+                    <td {...cell.getCellProps()}>
+                      {// Render the cell contents
+                      cell.render('Cell')}
+                    </td>
+                  )
+                })}
+              </tr>
+            )
+          })}
+        </tbody>
+      </table>
     </>
     )
 }
-
 
 /* -------------------------------------------------------------------------- */
 /*                 Define Main Component For Exporting Default                */
 /* -------------------------------------------------------------------------- */
 
 /*
-  I pass this props from Directory.js I think, 
-  so somewhere in here I need to hand off that data to populate the table
+  I pass this props from Directory.js , that includes my results from my api call
 */
 
 function EmployeeTable(props) {
