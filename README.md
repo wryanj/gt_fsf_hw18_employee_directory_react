@@ -1,3 +1,4 @@
+
 # gt_fsf_hw18_employee_directory_react 
 
 ## Table of Contents
@@ -12,8 +13,12 @@
 **Deployed App (Git Pages)**      
 ENTER
 
-**Walkthrough Video**       
-Enter
+**Walkthrough Video With Commentary Hosted on Google Drive**       
+https://drive.google.com/file/d/1wzRZTKKSh8pN6EdJXFfJRNebTSxN7II4/view?usp=sharing
+
+**Directory Snapshot**  
+Here is the look of the directory, I went with a dark mode theme. For details on search and filter see the deployed app or checkout the demo video.
+![directory_snapshot](https://user-images.githubusercontent.com/72420733/116709724-f416e480-a99e-11eb-9c4e-d26b2b6fdae3.PNG)
 
 This assignment asked us to build an employee directory front end using react components and related npm libraries, such as react tables. The assignment is only focused on a front end, no server script is written or provided for this. The result is pretty straight forward. 
 
