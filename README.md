@@ -21,7 +21,9 @@ Using react components, I have created an employee directory table that can be s
 
 For data, I utilize the random user API. I make a call to get 100 users for this example within my API.js file (users are also only returned from the U.S). Then on my directory page (where I define a container component) I map through those results, create a new array of objects including only the information I need in the table, and then set it to the state property I defined for results. From there I pass it as a prop down to my EmployeeTable component where I render it within a react table I setup. 
 
-For implementing the reac tables, I also used their code sandbox provided and really thought this was useful. I will use this tool more often in the future for checking or playing around with code without doing it in my source files on a current branch. 
+For page styling I utilized bootsrap 5.
+
+For implementing the react tables, I also used their code sandbox provided and really thought this was useful. I will use this tool more often in the future for checking or playing around with code without doing it in my source files on a current branch. 
 
 ## Usage
 This application can be used to quickly pull data and render it to a table that can be searched and sorted. For the example here I pass it user data, but it could be modified for various purposes. 
