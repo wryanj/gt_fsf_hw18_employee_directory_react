@@ -11,7 +11,7 @@
 
 ## Description
 **Deployed App (Git Pages)**      
-ENTER
+https://wryanj.github.io/gt_fsf_hw19_employee_directory_react/
 
 **Walkthrough Video With Commentary Hosted on Google Drive**       
 https://drive.google.com/file/d/1wzRZTKKSh8pN6EdJXFfJRNebTSxN7II4/view?usp=sharing
